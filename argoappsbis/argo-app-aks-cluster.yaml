@@ -2,26 +2,23 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: platform-ref-azure
+  name: aks-cluster
   namespace: argocd
 spec:
+  destination:
+    server: https://kubernetes.default.svc
   project: default
   source:
-    repoURL: 'https://github.com/natereid72/gitops.git'
-    path: platform-ref-azure
+    path: aks/xrc
+    repoURL: https://github.com/bmutziu/gitops.git
     targetRevision: HEAD
-  destination:
-    server: 'https://kubernetes.default.svc'
   syncPolicy:
-    automated:
-      selfHeal: true
     syncOptions:
       - Validate=false
-      - CreateNamespace=true
       - ApplyOutOfSyncOnly=true
     retry:
       limit: 2
       backoff:
-        duration: 60s
+        duration: 5s
         factor: 2
-        maxDuration: 5m0s
+        maxDuration: 3m0s

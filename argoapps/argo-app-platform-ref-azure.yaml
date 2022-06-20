@@ -2,27 +2,26 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: cluster-policy
+  name: platform-ref-azure
   namespace: argocd
 spec:
-  destination:
-    server: https://kubernetes.default.svc
   project: default
   source:
-    directory:
-      jsonnet: {}
-      recurse: true
-    path: policy
-    repoURL: https://github.com/natereid72/gitops.git
+    repoURL: 'https://github.com/bmutziu/gitops.git'
+    path: platform-ref-azure
     targetRevision: HEAD
+  destination:
+    server: 'https://kubernetes.default.svc'
   syncPolicy:
-    automated: {}
+    automated:
+      selfHeal: true
     syncOptions:
       - Validate=false
+      - CreateNamespace=true
       - ApplyOutOfSyncOnly=true
     retry:
       limit: 2
       backoff:
-        duration: 1m
+        duration: 60s
         factor: 2
-        maxDuration: 3m0s
+        maxDuration: 5m0s

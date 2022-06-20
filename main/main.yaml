@@ -10,7 +10,7 @@ spec:
   project: default
   source:
     path: argoapps
-    repoURL: https://github.com/natereid72/gitops.git
+    repoURL: https://github.com/bmutziu/gitops.git
     targetRevision: HEAD
   syncPolicy:
     automated: {}
