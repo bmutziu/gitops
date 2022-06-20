@@ -21,7 +21,7 @@ spec:
         ports:
         - containerPort: 80
         volumeMounts:
-        - mountPath: /usrtest
+        - mountPath: /mpdevtest
           name: my-vol
       restartPolicy: Always
       volumes:

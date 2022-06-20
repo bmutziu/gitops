@@ -1,10 +1,10 @@
 apiVersion: azure.platformref.crossplane.io/v1alpha1
 kind: Cluster
 metadata:
-  name: nate-platform-ref-azure
+  name: bmutziu-platform-ref-azure
   namespace: dev
 spec:
-  id: nate-platform-ref-azure
+  id: bmutziu-platform-ref-azure
   parameters:
     nodes:
       count: 1 #1-100
