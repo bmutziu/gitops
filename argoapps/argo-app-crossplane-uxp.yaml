@@ -8,7 +8,7 @@ spec:
   project: default
   source:
     repoURL: 'https://charts.upbound.io/stable'
-    targetRevision: 1.6.3-up.1
+    targetRevision: 1.8.1-up.1
     chart: universal-crossplane
   destination:
     server: 'https://kubernetes.default.svc'
