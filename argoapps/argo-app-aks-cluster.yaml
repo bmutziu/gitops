@@ -9,7 +9,7 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: aks/xrc
+    path: aks/xr
     repoURL: https://github.com/bmutziu/gitops.git
     targetRevision: HEAD
   syncPolicy:
