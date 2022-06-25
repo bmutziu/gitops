@@ -6,7 +6,7 @@ metadata:
     argocd.argoproj.io/sync-wave: "-2"
 spec:
   ignoreCrossplaneConstraints: false
-  package: docker.io/bmutziu/platform-ref-azure:v0.5.0-3.ge6f943d
+  package: docker.io/bmutziu/platform-ref-azure:v0.5.0-5.gcbc8cfe
   packagePullPolicy: Always
   revisionActivationPolicy: Automatic
   revisionHistoryLimit: 1
