@@ -16,7 +16,7 @@ spec:
       apiVersion: azure.crossplane.io/v1alpha3
       kind: ResourceGroup
       spec:
-        location: West US 3
+        location: Sweden Central
     patches:
       - fromFieldPath: spec.id
         toFieldPath: metadata.name
@@ -38,7 +38,7 @@ spec:
       spec:
         resourceGroupNameSelector:
           matchControllerRef: true
-        location: West US 2
+        location: Sweden Central
         properties:
           addressSpace:
             addressPrefixes: ['192.168.0.0/16']

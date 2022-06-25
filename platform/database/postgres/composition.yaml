@@ -3,8 +3,8 @@ kind: Composition
 metadata:
   name: xpostgresqlinstances.azure.platformref.crossplane.io
   annotations:
-    argocd.argoproj.io/sync-wave: "3"
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "3"
   labels:
     provider: azure
 spec:
@@ -20,7 +20,7 @@ spec:
         forProvider:
           version: "11"
           administratorLogin: myadmin
-          location: West US 2
+          location: Sweden Central
           sslEnforcement: Disabled
           storageProfile:
               storageMB: 5120

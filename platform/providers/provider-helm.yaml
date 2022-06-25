@@ -6,7 +6,7 @@ metadata:
     argocd.argoproj.io/sync-wave: "-2"
 spec:
   ignoreCrossplaneConstraints: false
-  package: registry.upbound.io/crossplane/provider-helm:v0.9.0
+  package: registry.upbound.io/crossplane/provider-helm:v0.10.0
   packagePullPolicy: IfNotPresent
   revisionActivationPolicy: Automatic
   revisionHistoryLimit: 1
