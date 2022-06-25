@@ -8,7 +8,7 @@ on:
   workflow_dispatch: {}
 
 env:
-  DOCKER_USR: ${{ secrets.UPBOUND_ROBOT_USR }}
+  DOCKER_USR: ${{ secrets.DOCKER_ROBOT_USR }}
 
 jobs:
   configuration:
@@ -29,14 +29,14 @@ jobs:
         if: env.DOCKER_USR != ''
         with:
           registry: docker.io
-          username: ${{ secrets.UPBOUND_ROBOT_USR }}
-          password: ${{ secrets.UPBOUND_ROBOT_PSW }}
+          username: ${{ secrets.DOCKER_ROBOT_USR }}
+          password: ${{ secrets.DOCKER_ROBOT_PSW }}
       - name: Build
         uses: crossplane-contrib/xpkg-action@v0.2.0
         with:
           channel: stable
           version: current
-          command: build configuration -f ${{ github.workspace }} --name platform-ref-azure.xpkg --ignore '.github/*,.github/*/*,examples/*,hack/*,manifest*'
+          command: build configuration -f ${{ github.workspace }} --name platform-ref-azure.xpkg --ignore '.github/workflows/*,aks/*/*,platform/providers/*,policy/*,main/*,platform-ref-azure/*,argoapps/*,argo-app-aks-cluster.yaml'
       - name: Push
         uses: crossplane-contrib/xpkg-action@v0.2.0
         with:
@@ -45,3 +45,14 @@ jobs:
         uses: crossplane-contrib/xpkg-action@v0.2.0
         with:
           command: push configuration -f platform-ref-azure.xpkg docker.io/bmutziu/platform-ref-azure
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Update manifest
+        run: |
+          sed -i -e "s|package: docker.io/bmutziu/platform-ref-azure:.*|package: docker.io/bmutziu/platform-ref-azure:${{ steps.tagger.outputs.VERSION_TAG }}|g" ./platform-ref-azure/configuration.yaml
+      - name: Commit changes
+        uses: EndBug/add-and-commit@v7
+        with:
+          add: '.'
+          message: "github bot package version update"
+          signoff: true
